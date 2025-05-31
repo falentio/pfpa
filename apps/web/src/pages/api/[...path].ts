@@ -1,9 +1,9 @@
-import { defineMiddleware } from "astro:middleware";
 import {
 	Application,
 	cloudflareGenerators,
 	deepInfraGenerators,
 } from "@pfpa/core";
+
 import { createStorage } from "unstorage";
 import kvDriver from "unstorage/drivers/cloudflare-kv-binding";
 import type { APIRoute } from "astro";
@@ -16,10 +16,6 @@ function getGenerators(env: Env) {
 	}
 	throw new Error("No generators found");
 }
-
-export const onRequest = defineMiddleware((context, next) => {
-	return next();
-});
 
 export const prerender = false;
 

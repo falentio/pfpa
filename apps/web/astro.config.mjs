@@ -13,7 +13,8 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        "@pfp/core": path.resolve("../packages/core/src")
+        "@pfp/core": path.resolve("../packages/core/src"),
+        "react-dom/server": "react-dom/server.edge",
       }
     }
   },
