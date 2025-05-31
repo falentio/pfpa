@@ -14,7 +14,7 @@ export default defineConfig({
     resolve: {
       alias: {
         "@pfp/core": path.resolve("../packages/core/src"),
-        "react-dom/server": "react-dom/server.edge",
+       ...(import.meta.env.PROD ? { "react-dom/server": "react-dom/server.edge" } : {}),
       }
     }
   },
@@ -22,7 +22,9 @@ export default defineConfig({
     checkOrigin: false,
   },
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "passthrough"
+  }),
   output: "server",
   integrations: [react()]
 });
