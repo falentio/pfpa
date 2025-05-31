@@ -1,34 +1,21 @@
 {
   "name": "pfpa",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
-    "preview": "wrangler dev"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pnpm -r build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
-    "@ai-sdk/deepinfra": "^0.2.15",
-    "@biomejs/biome": "^1.9.4",
-    "@cloudflare/vitest-pool-workers": "^0.8.34",
-    "@cloudflare/workers-types": "^4.20250529.0",
-    "@mjackson/lazy-file": "^3.3.1",
-    "ai": "^4.3.16",
-    "hono": "^4.7.10",
+    "tsdown": "^0.12.5",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "unstorage": "^1.16.0",
     "vite": "^6.3.5",
-    "vitest": "^3.1.0",
-    "vitest-mock-extended": "^3.1.0",
-    "wrangler": "^4.18.0",
-    "zod": "^3.25.42"
-  },
-  "dependencies": {
-    "@falentio/anaid": "npm:@jsr/falentio__anaid@^1.2.0",
-    "@falentio/rng": "npm:@jsr/falentio__rng@^0.0.4"
+    "vitest": "^3.1.0"
   }
 }

@@ -1,0 +1,49 @@
+{
+  "name": "@pfpa/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "dev": "wrangler dev",
+    "build": "tsdown"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.4.1",
+  "devDependencies": {
+    "@ai-sdk/deepinfra": "^0.2.15",
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/vitest-pool-workers": "^0.8.34",
+    "@cloudflare/workers-types": "^4.20250529.0",
+    "@mjackson/lazy-file": "^3.3.1",
+    "ai": "^4.3.16",
+    "hono": "^4.7.10",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.0",
+    "vitest-mock-extended": "^3.1.0",
+    "wrangler": "^4.18.0",
+    "zod": "^3.25.42",
+    "@falentio/anaid": "npm:@jsr/falentio__anaid@^1.2.0",
+    "@falentio/rng": "npm:@jsr/falentio__rng@^0.0.4"
+  },
+  "dependencies": {
+    "unstorage": "^1.16.0",
+    "zod": "^3.25.42"
+  },
+  "peerDependencies": {
+    "unstorage": "^1.16.0",
+    "zod": "^3.25.42"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/app.d.mts",
+      "import": "./dist/app.mjs"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+---
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import Layout from "../layouts/Layout.astro";
+import { Code } from "astro:components";
+import { RandomImage } from "@/components/random-image";
+
+const images = Array.from(
+	{ length: 100 },
+	(_, i) =>
+		`/api/collection/animal-v0/${i}:${(Date.now() / (86400_000 * 7)) | 0}`,
+);
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<div
+		class="border overflow-hidden relative min-h-[36rem] rounded-b-lg mb-6"
+	>
+		<!-- TODO: maybe per line rotate? -->
+		<div
+			class="flex flex-row flex-wrap gap-2 max-h-[60rem] overflow-hidden rotate-6 scale-125 absolute left-0 w-full min-w-[48rem] h-full pointer-events-none z-0"
+		>
+			{
+				images.map((image) => (
+					<div class="aspect-square rounded-md overflow-hidden h-24 max-sm:h-16 max-md:h-20">
+						<img
+							src={image}
+							loading="lazy"
+							decoding="async"
+							alt={`Animal ${image}`}
+							class="w-full h-full object-cover"
+						/>
+					</div>
+				))
+			}
+		</div>
+		<div class="relative z-10">
+			<div
+				class="bg-gradient-to-b from-background to-background/90 min-h-[22rem] w-full p-6 flex flex-col justify-center items-center gap-4"
+			>
+				<h1 class="text-4xl font-bold text-accent text-center">
+					Profile Pictures Placeholders
+				</h1>
+				<p class="text-background-foreground max-w-md text-center">
+					PFPA is profile picture placeholders. Just like a jdenticon,
+					or dicebear, but powered by AI.
+				</p>
+			</div>
+			<div
+				class="h-16 bg-gradient-to-b from-background/90 to-transparent"
+			>
+			</div>
+		</div>
+	</div>
+	<div class="flex flex-col gap-6">
+		<Card>
+			<CardHeader>
+				<CardTitle as="h2">How to use</CardTitle>
+				<CardDescription>
+					You just need to put our placeholder image in your src.
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<div class="flex flex-col gap-2">
+					<span>Put it on your img src</span>
+					<div class="font-mo">
+						<Code
+							class="px-4 py-2 rounded-md"
+							lang="html"
+							code={"<img src='https://pfpa.ai/api/collection/{collectionName}/{seed}' />"}
+						/>
+					</div>
+				</div>
+			</CardContent>
+		</Card>
+
+		<Card>
+			<CardHeader>
+				<CardTitle as="h2">Examples pfps</CardTitle>
+				<CardDescription> Try input your name </CardDescription>
+			</CardHeader>
+			<CardContent>
+				<RandomImage client:idle baseUrl={Astro.url} />
+			</CardContent>
+		</Card>
+
+		<Card>
+			<CardHeader>
+				<CardTitle as="h2">Collections</CardTitle>
+				<CardDescription>
+					You can use our collections to get a placeholder image.
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<ul class="list-disc list-inside">
+					<li>
+						<span class="font-mono">animal-v0</span>
+					</li>
+					<li>
+						<span class="font-mono text-muted-foreground"
+							>coming soon</span
+						>
+					</li>
+				</ul>
+			</CardContent>
+		</Card>
+	</div>
+</Layout>
