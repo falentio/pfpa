@@ -7,6 +7,8 @@ import { CollectionService } from "./services/collection/collection.service.ts";
 import kv from "unstorage/drivers/cloudflare-kv-binding";
 import { createStorage } from "unstorage";
 import { collectionRouter } from "./services/collection/collection.router.ts";
+import { FriendlyError } from "./commons/error.ts";
+import type { StatusCode } from "hono/utils/http-status";
 
 export default class EntryPoint extends WorkerEntrypoint<Env> {
 	services() {
@@ -26,6 +28,15 @@ export default class EntryPoint extends WorkerEntrypoint<Env> {
 		const services = this.services();
 		return new Hono()
 			.route("/", collectionRouter(services.collectionService))
+			.onError(async (err, c) => {
+				if (err instanceof FriendlyError) {
+					console.log(err.internalMessage);
+					c.status(err.status as StatusCode);
+					return c.json({ message: err.publicMessage });
+				}
+				console.error(err);
+				return c.json({ message: "Internal Server Error" }, 500);
+			})
 			.post("/init", async (c) => {
 				await Promise.all([
 					services.collectionService.createCollection({
