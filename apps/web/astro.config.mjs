@@ -18,6 +18,9 @@ export default defineConfig({
       }
     }
   },
+  security: {
+    checkOrigin: false,
+  },
 
   adapter: cloudflare(),
   output: "server",
