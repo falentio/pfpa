@@ -23,7 +23,6 @@ export default class EntryPoint extends WorkerEntrypoint<Env> {
 	);
 
 	async fetch(request: Request): Promise<Response> {
-		console.log(this.env.DEEPINFRA_API_KEY);
 		return this.app.router().fetch(request);
 	}
 }
