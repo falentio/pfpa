@@ -21,7 +21,6 @@ export default defineConfig({
   security: {
     checkOrigin: false,
   },
-
   adapter: cloudflare({
     imageService: "passthrough"
   }),
