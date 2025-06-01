@@ -4,6 +4,7 @@ import type { Collection } from "../services/collection/collection.types.ts";
 import { CollectionService } from "../services/collection/collection.service.ts";
 import { GeneratorService } from "../services/generator/generator.service.ts";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { collectionRouter } from "../services/collection/collection.router.ts";
 
 export type ApplicationConfig = {
@@ -57,6 +58,20 @@ export class Application {
 	router(base = "/") {
 		return new Hono()
 			.basePath(base)
+			.use(
+				cors({
+					origin: "*",
+					maxAge: 86400,
+					allowMethods: ["GET"],
+					allowHeaders: [
+						"Content-Type",
+						"Content-Range",
+						"Content-Disposition",
+						"Content-Length",
+						"Content-Encoding",
+					],
+				}),
+			)
 			.route("/", collectionRouter(this.services().collection))
 			.post("/init", async (c) => {
 				await this.initCollection();
