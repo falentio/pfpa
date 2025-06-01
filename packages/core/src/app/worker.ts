@@ -15,8 +15,15 @@ export default class EntryPoint extends WorkerEntrypoint<Env> {
 			initialCollections: [
 				{
 					imageModel: "black-forest-labs/FLUX-1-schnell",
+					themeName: "animal",
 					name: "animal-v0",
-					maxImage: 1108,
+					maxImage: 30,
+				},
+				{
+					imageModel: "black-forest-labs/FLUX-1-schnell",
+					themeName: "elemental-cat",
+					name: "elemental-cat-v0",
+					maxImage: 30,
 				},
 			],
 		},

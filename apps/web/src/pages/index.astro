@@ -14,7 +14,7 @@ import { Code } from "astro:components";
 const images = Array.from(
 	{ length: 100 },
 	(_, i) =>
-		`/api/collection/animal-v0/${i}:${(Date.now() / (86400_000 * 7)) | 0}`,
+		`/api/collection/elemental-cat-v0/${i}:${(Date.now() / (86400_000 * 7)) | 0}`,
 );
 
 export const prerender = true;
@@ -102,6 +102,9 @@ export const prerender = true;
 				<ul class="list-disc list-inside">
 					<li>
 						<span class="font-mono">animal-v0</span>
+					</li>
+					<li>
+						<span class="font-mono">elemental-cat-v0</span>
 					</li>
 					<li>
 						<span class="font-mono text-muted-foreground"

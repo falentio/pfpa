@@ -34,6 +34,13 @@ export const ALL: APIRoute = async (context) => {
 					name: "animal-v0",
 					imageModel: "black-forest-labs/FLUX-1-schnell",
 					maxImage: 111,
+					themeName: "animal",
+				},
+				{
+					name: "elemental-cat-v0",
+					imageModel: "black-forest-labs/FLUX-1-schnell",
+					maxImage: 1108,
+					themeName: "elemental-cat",
 				},
 			],
 		},

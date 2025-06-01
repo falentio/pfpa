@@ -6,15 +6,14 @@ import type {
 	PromptGeneratorOptions,
 	Theme,
 } from "../generator.types.ts";
-import { animalTheme } from "../theme/animal.ts";
+import { getTheme } from "../theme/index.ts";
 
 export function cloudflarePromptGenerator(_ai: Ai): PromptGenerator {
 	return async (opts?: PromptGeneratorOptions) => {
 		const ai = _ai as unknown as Ai<Record<string, BaseAiTextGeneration>>;
-		const {
-			model = "@cf/meta/llama-3.1-8b-instruct-awq",
-			theme = animalTheme,
-		} = opts ?? {};
+		const { model = "@cf/meta/llama-3.1-8b-instruct-awq", themeName } =
+			opts ?? {};
+		const theme = getTheme(themeName);
 		const result = await ai.run(model, {
 			messages: theme.messages,
 			// backend consumption only

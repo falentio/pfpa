@@ -9,6 +9,7 @@ import { createDeepInfra } from "@ai-sdk/deepinfra";
 import { generateText, generateObject } from "ai";
 import { animalTheme } from "../theme/animal.ts";
 import { z } from "zod";
+import { getTheme } from "../theme/index.ts";
 
 type DeepInfraImageRequestBody = {
 	prompt: string;
@@ -39,8 +40,8 @@ export function deepInfraPromptGenerator(apikey: string) {
 		apiKey: apikey,
 	});
 	return async (opts?: PromptGeneratorOptions) => {
-		const { model = "google/gemini-2.5-flash", theme = animalTheme } =
-			opts ?? {};
+		const { model = "google/gemini-2.5-flash", themeName } = opts ?? {};
+		const theme = getTheme(themeName);
 		const result = await generateObject({
 			model: deepInfra(model),
 			messages: theme.messages,

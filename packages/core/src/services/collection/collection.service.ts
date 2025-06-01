@@ -119,6 +119,7 @@ export class CollectionService {
 			},
 			prompt: {
 				model: collection.promptModel,
+				themeName: collection.themeName,
 			},
 		});
 		const bytes = await created.image.bytes();
@@ -132,6 +133,7 @@ export class CollectionService {
 				prompt: created.prompt,
 			}),
 		]);
+		console.log({ prompt: created.prompt });
 		return new LazyFile(
 			{
 				byteLength: bytes.length,

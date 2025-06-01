@@ -1,6 +1,6 @@
 export type PromptGeneratorOptions = {
 	model?: string;
-	theme?: Theme;
+	themeName?: string;
 };
 
 export type PromptGenerator = (

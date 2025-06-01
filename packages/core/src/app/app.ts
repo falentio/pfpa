@@ -31,7 +31,13 @@ export class Application {
 	initCollection = lazyFn(async () => {
 		const collections = this.config.initialCollections;
 		for (const collection of collections) {
-			await this.services().collection.createCollection(collection);
+			await this.services()
+				.collection.createCollection(collection)
+				.catch(() => {
+					console.warn({
+						message: `collection with name ${collection.name} already exists`,
+					});
+				});
 		}
 	});
 
