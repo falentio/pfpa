@@ -75,7 +75,7 @@ export const prerender = true;
 					<span>Put it on your img src</span>
 					<Code
 						lang="html"
-						code="<img src='https://pfpa.ai/api/collection/{collectionName}/{seed}' />"
+						code={`<img src='https://${Astro.url.origin + (Astro.url.port ? `:${Astro.url.port}` : "")}/api/collection/{collectionName}/{seed}' />`}
 					/>
 				</div>
 			</CardContent>
@@ -87,7 +87,7 @@ export const prerender = true;
 				<CardDescription> Try input your name </CardDescription>
 			</CardHeader>
 			<CardContent>
-				<RandomImage client:idle baseUrl={Astro.url} />
+				<RandomImage client:idle />
 			</CardContent>
 		</Card>
 

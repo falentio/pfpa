@@ -18,6 +18,7 @@ export default defineConfig({
       }
     }
   },
+  site: "https://profile.iforana.com",
   security: {
     checkOrigin: false,
   },

@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useEffect, useState } from "react";
 
-export type RandomImageProps = {
-    baseUrl: URL
-}
-export function RandomImage({ baseUrl }: RandomImageProps) {
+const baseUrl = new URL(
+    typeof window !== "undefined" ? window.location.origin : "https://profile.iforana.com"
+)
+
+export function RandomImage() {
     const [seed, setSeed] = useState("")
     const randomize = () => {
         const CONSONANT = "bcdfghjklmnpqrstvwxyz"
